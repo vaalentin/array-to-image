@@ -1,0 +1,20 @@
+{
+  "name": "@vaalentin/array-to-image",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "babel ./src/index.js --out-file dist/index.js --presets=es2015"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vaalentin/array-to-image.git"
+  },
+  "author": "vaalentin <vaalentin@protonmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.4.0",
+    "babel-preset-es2015": "^6.3.13"
+  }
+}
