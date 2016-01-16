@@ -5,13 +5,13 @@ Convert an Uint8ClampedArray to an image.
 ## Installation
 
 ```
-$ npm i -S @vaalentin/array-to-image
+$ npm install --save array-to-image
 ```
 
 ## Usage
 
 ```js
-import { getImgFromArr } from '@vaalentin/array-to-image';
+import { getImgFromArr } from 'array-to-image';
 
 const data = new Uint8ClampedArray(256 * 256 * 4);
 
@@ -27,20 +27,20 @@ const img = getImgFromArr(data);
 
 ## API
 
-#### `getDataUrlFromArr(arr, w, h)`
+#### `dataUrl = getDataUrlFromArr(arr, w, h)`
 
 Get a data url string from the given Uint8ClampedArray `arr`.
 If `w` and `h` are ommitted, the image is considered to be squared.
 
-#### `getImgFromDataUrl(data)`
+#### `img = getImgFromDataUrl(data)`
 
-Get a HTMLImageElement from the given url string `data`.
+Get an `image` from the given url string `data`.
 
-#### `getImgFromArr(arr, w, h)`
+#### `img = getImgFromArr(arr, w, h)`
 
-Get a HTMLImageElement from the given Uint8ClampedArray `arr`.
+Get an `image` from the given Uint8ClampedArray `arr`.
 If `w` and `h` are ommitted, the image is considered to be squared.
 
 ## License
 
-MIT
+MIT, see [LICENSE.md](https://github.com/vaalentin/array-to-image/blob/master/LICENSE.md) for more details.

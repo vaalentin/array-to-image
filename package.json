@@ -1,7 +1,7 @@
 {
-  "name": "@vaalentin/array-to-image",
+  "name": "array-to-image",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert an Uint8ClampedArray to an image",
   "main": "dist/index.js",
   "scripts": {
     "prepublish": "npm run build",
