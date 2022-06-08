@@ -1,46 +1,70 @@
 /**
- * @function getDataUrlFromArr
- * @param {Uint8ClampedArray} arr
- * @param {int} w
- * @param {int} h
+ * @function getDataUrlFromArray
+ * @param {Uint8ClampedArray} inputArray
+ * @param {int|null} imageWidth
+ * @param {int|null} imageHeight
+ * @param {string} imageFormat
+ * @param {Number} encoderOptions
  * @returns {string}
  */
-export function getDataUrlFromArr(arr, w, h) {
-  if(typeof w === 'undefined' || typeof h === 'undefined') {
-    w = h = Math.sqrt(arr.length / 4);
-  }
+export function getDataUrlFromArray(
+    inputArray,
+    imageWidth = null,
+    imageHeight = null,
+    imageFormat = 'image/png',
+    encoderOptions = 1
+) {
+    if (imageWidth === null|| imageHeight === null) {
+        imageWidth = imageHeight = Math.sqrt(inputArray.length / 4);
+    }
 
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
+    const canvas = document.createElement('canvas');
+    const canvasContext = canvas.getContext('2d');
 
-  canvas.width = w;
-  canvas.height = h;
+    canvas.width = imageWidth;
+    canvas.height = imageHeight;
 
-  const imgData = ctx.createImageData(w, h);
-  imgData.data.set(arr);
-  ctx.putImageData(imgData, 0, 0);
+    const imageData = canvasContext.createImageData(imageWidth, imageHeight);
+    imageData.data.set(inputArray);
+    canvasContext.putImageData(imageData, 0, 0);
 
-  return canvas.toDataURL();
+    return canvas.toDataURL(imageFormat, encoderOptions);
 }
 
 /**
- * @function getImgFromDataUrl
- * @param {string} data
+ * @function getImageFromDataUrl
+ * @param {string} dataUrl
  * @returns {HTMLImageElement}
  */
-export function getImgFromDataUrl(data) {
-  const img = document.createElement('img');
-  img.src = data;
-  return img;
+export function getImageFromDataUrl(dataUrl) {
+    const img = document.createElement('img');
+    img.src = dataUrl;
+    return img;
 }
 
 /**
- * @function getImgFromArr
- * @param {Uint8ClampedArray} arr
- * @param {int} w
- * @param {int} h
+ * @function getImageFromArray
+ * @param {Uint8ClampedArray} inputArray
+ * @param {int|null} imageWidth
+ * @param {int|null} imageHeight
+ * @param {string} imageFormat
+ * @param {Number} encoderOptions
  * @returns {HTMLImageElement}
  */
-export function getImgFromArr(arr, w, h) {
-  return getImgFromDataUrl(getDataUrlFromArr(arr, w, h));
+export function getImageFromArray(
+    inputArray,
+    imageWidth= null,
+    imageHeight= null,
+    imageFormat = 'image/png',
+    encoderOptions = 1
+) {
+    return getImageFromDataUrl(
+        getDataUrlFromArray(
+            inputArray,
+            imageWidth,
+            imageHeight,
+            imageFormat,
+            encoderOptions
+        )
+    );
 }

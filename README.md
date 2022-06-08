@@ -11,35 +11,53 @@ $ npm install --save array-to-image
 ## Usage
 
 ```js
-import { getImgFromArr } from 'array-to-image';
+import {getImageFromArray} from 'array-to-image';
 
 const data = new Uint8ClampedArray(256 * 256 * 4);
 
-for(let i = 0; i < data.length; i += 4) {
-  data[i] = 255; // r
-  data[i + 1] = 0; // g
-  data[i + 2] = 0; // b
-  data[i + 3] = 255; // a
+for (let i = 0; i < data.length; i += 4) {
+    data[i] = 255; // r
+    data[i + 1] = 0; // g
+    data[i + 2] = 0; // b
+    data[i + 3] = 255; // a
 }
 
-const img = getImgFromArr(data);
+const img = getImageFromArray(data);
 ```
 
 ## API
 
-#### `dataUrl = getDataUrlFromArr(arr, w, h)`
+#### getDataUrlFromArray
 
-Get a data url string from the given Uint8ClampedArray `arr`.
-If `w` and `h` are ommitted, the image is considered to be squared.
+Get a data url string from the given input array, specifying the desired image format and quality.
 
-#### `img = getImgFromDataUrl(data)`
+```js
+dataUrl = getDataUrlFromArray(inputArray, imageWidth, imageHeight, 'image/jpeg', 0.8)
+```
 
-Get an `image` from the given url string `data`.
+> Notes:
+> - If `imageWidth` and `imageHeight` are omitted, the image is considered to be squared.
+> - The `imageFormat` and `encoderOptions` default to `image/png` and `1`, respectively.
 
-#### `img = getImgFromArr(arr, w, h)`
+#### getImageFromDataUrl
 
-Get an `image` from the given Uint8ClampedArray `arr`.
-If `w` and `h` are ommitted, the image is considered to be squared.
+Get an image from the given url string.
+
+```js
+img = getImageFromDataUrl(dataUrl)
+```
+
+#### getImageFromArray
+
+Get an image from the given input array, specifying the desired image format and quality.
+
+```js
+img = getImageFromArray(inputArray, imageWidth, imageHeight, 'image/jpeg', 0.8)
+```
+
+> Notes:
+> - If `imageWidth` and `imageHeight` are ommitted, the image is considered to be squared.
+> - The `imageFormat` and `encoderOptions` default to `image/png` and `1`, respectively.
 
 ## License
 
